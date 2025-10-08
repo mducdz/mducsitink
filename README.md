@@ -62,7 +62,7 @@ local Tabs = {
     end
 })
     
-    Tabs.Main1:AddButton({
+Tabs.Main1:AddButton({
     Title="VolCaNo Hub",
     Description="",
     Callback=function()
