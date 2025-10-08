@@ -79,3 +79,8 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaCrack/KimP/refs/he
   end
 })
 
+Tabs.Main1:AddButton({
+    Title="VolCaNo Hub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/farghii/relzhub/main/execute.hack", true))()
