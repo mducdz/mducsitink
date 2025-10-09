@@ -23,12 +23,12 @@ end)
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 repeat wait() until game:IsLoaded()
 local Window = Fluent:CreateWindow({
-    Title = "beta",
-    SubTitle = "script lua",
+    Title = "MducDepZai Hub",
+    SubTitle = "by realmduc",
     TabWidth = 157,
     Size = UDim2.fromOffset(450, 300),
     Acrylic = true,
-    Theme = "Amethyst",
+    Theme = "blue",
     MinimizeKey = Enum.KeyCode.End
 })
 local Tabs = {
@@ -63,14 +63,15 @@ local Tabs = {
 })
     
     Tabs.Main1:AddButton({
-    Title="XERO Hub",
+    Title="Redz Hub",
     Description="",
     Callback=function()
-	 getgenv().Team = "Marines" -- Pirates/Marines
-getgenv().Fix_Lag = true -- true/false
-getgenv().Auto_Execute = false -- true/false
-getgenv().Clear_Settings = false -- true/false
-loadstring(game:HttpGet("https://raw.githubusercontent.com/verudous/Xero-Hub/main/main.lua"))()
+	  local Settings = {
+  JoinTeam = "Pirates"; -- Pirates/Marines
+  Translator = true; -- true/false
+}
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/newredz/BloxFruits/refs/heads/main/Source.luau"))(Settings)
   end
 })
 
@@ -80,12 +81,4 @@ Tabs.Main1:AddButton({
     Callback=function()
 	  loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaAnarchist/GreenZ-Hub/refs/heads/main/KaitunDoughKing.lua"))()
   end
-})
-
-Tabs.Main1:AddButton({
-    Title="banana Hub",
-    Description="",
-    Callback=function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/Nghia11n/Banana-Hub/main/bananahub.lua"))()
-
 })
