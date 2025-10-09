@@ -63,13 +63,14 @@ local Tabs = {
 })
     
     Tabs.Main1:AddButton({
-    Title="Redz Hub",
+    Title="XERO Hub",
     Description="",
     Callback=function()
-	  getgenv().Team = "Pirates"
-getgenv().AntiCrash = false
-getgenv().BoostFps = false
-loadstring(game:HttpGet("https://raw.githubusercontent.com/NGUYENVUDUY1/Super/main/HiruHub.lua"))()
+	 getgenv().Team = "Marines" -- Pirates/Marines
+getgenv().Fix_Lag = true -- true/false
+getgenv().Auto_Execute = false -- true/false
+getgenv().Clear_Settings = false -- true/false
+loadstring(game:HttpGet("https://raw.githubusercontent.com/verudous/Xero-Hub/main/main.lua"))()
   end
 })
 
@@ -79,4 +80,12 @@ Tabs.Main1:AddButton({
     Callback=function()
 	  loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaAnarchist/GreenZ-Hub/refs/heads/main/KaitunDoughKing.lua"))()
   end
+})
+
+Tabs.Main1:AddButton({
+    Title="banana Hub",
+    Description="",
+    Callback=function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Nghia11n/Banana-Hub/main/bananahub.lua"))()
+
 })
