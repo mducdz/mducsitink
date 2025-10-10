@@ -86,16 +86,3 @@ getgenv().Clear_Settings = false -- true/false
 loadstring(game:HttpGet("https://raw.githubusercontent.com/verudous/Xero-Hub/main/main.lua"))()
   end
 })
-
-Tabs.Main1:AddButton({
-    Title="kaix Hub",
-    Description="",
-    Callback=function()
-	local Settings = {
-  JoinTeam = "Pirates"; -- Pirates/Marines
-  Translator = true; -- true/false
-}
-getgenv().BETA_VERSION = true
-loadstring(game:HttpGet("https://raw.githubusercontent.com/tlredz/Scripts/refs/heads/main/main.luau"))(Settings)
-  end
-})
