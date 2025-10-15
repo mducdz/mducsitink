@@ -73,10 +73,10 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/xshiba/MaruBitkub/mai
 })
 
 Tabs.Main1:AddButton({
-    Title="GreenZ Hub",
+    Title="Speed Hub",
     Description="",
     Callback=function()
-	  loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaAnarchist/GreenZ-Hub/refs/heads/main/KaitunDoughKing.lua"))() 
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
 	end
 }) 
 
@@ -88,3 +88,10 @@ Tabs.Main1:AddButton({
     end    
 })
 	
+Tabs.Main2:AddButton({
+    Title=" New Hub",
+    Description="",
+    Callback=function() 
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/GalaxyTeamHub/Galaxy-Hub/main/GalaxyBloxFruit.lua"))()
+	end
+})	
