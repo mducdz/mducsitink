@@ -28,7 +28,7 @@ local Window = Fluent:CreateWindow({
     TabWidth = 157,
     Size = UDim2.fromOffset(450, 300),
     Acrylic = true,
-    Theme = "Amethyst",
+    Theme = "Blue",
     MinimizeKey = Enum.KeyCode.End
 })
 local Tabs = {
@@ -63,15 +63,12 @@ local Tabs = {
 })
     
     Tabs.Main1:AddButton({
-    Title="Redz Hub",
+    Title="maru Hub",
     Description="",
     Callback=function()
-	  local Settings = {
-  JoinTeam = "Pirates"; -- Pirates/Marines
-  Translator = true; -- true/false
-}
-
-loadstring(game:HttpGet("https://raw.githubusercontent.com/newredz/BloxFruits/refs/heads/main/Source.luau"))(Settings)
+	 getgenv().Key = "MARU-CQSXE-C5SH-RNNL-63PPP-Q12TI"
+getgenv().id = "1402257125400514651"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/xshiba/MaruBitkub/main/Mobile.lua"))()
   end
 })
 
@@ -79,6 +76,15 @@ Tabs.Main1:AddButton({
     Title="GreenZ Hub",
     Description="",
     Callback=function()
-	  loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaAnarchist/GreenZ-Hub/refs/heads/main/KaitunDoughKing.lua"))()
-  end
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaAnarchist/GreenZ-Hub/refs/heads/main/KaitunDoughKing.lua"))() 
+	end
+}) 
+
+Tabs.Main1:AddButton({
+    Title="Matsune New Hub",
+    Description="",
+    Callback=function() 
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/Yatsuraa/Matsune/main/Matsunebeta.lua"))()
+    end    
 })
+	
