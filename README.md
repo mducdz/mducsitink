@@ -101,3 +101,5 @@ Tabs.Main0:AddButton({
     Description = "",
     Callback = function()
         setclipboard(rMChVgMZYJYHMGNtMvYkvDKasUFztRuG)
+    end
+})
