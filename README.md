@@ -95,3 +95,9 @@ Tabs.Main2:AddButton({
 	  loadstring(game:HttpGet("https://raw.githubusercontent.com/GalaxyTeamHub/Galaxy-Hub/main/GalaxyBloxFruit.lua"))()
 	end
 })	
+
+Tabs.Main0:AddButton({
+    Title = "key speed hub vv(cs thể bị fix)",
+    Description = "",
+    Callback = function()
+        setclipboard(rMChVgMZYJYHMGNtMvYkvDKasUFztRuG)
