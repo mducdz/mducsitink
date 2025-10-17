@@ -96,10 +96,10 @@ Tabs.Main2:AddButton({
 	end
 })	
 
-Tabs.Main0:AddButton({
+Tabs.Main1:AddButton({
     Title = "key speed hub vv(cs thể bị fix)",
     Description = "",
     Callback = function()
-        setclipboard(rMChVgMZYJYHMGNtMvYkvDKasUFztRuG)
+        setclipboard("rMChVgMZYJYHMGNtMvYkvDKasUFztRuG")
     end
 })
