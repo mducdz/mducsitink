@@ -80,19 +80,19 @@ Tabs.Main1:AddButton({
 	end
 }) 
 
-Tabs.Main1:AddButton({
-    Title="Matsune New Hub",
+Tabs.Main3:AddButton({
+    Title="Lurk Hub",
     Description="",
     Callback=function() 
-	  loadstring(game:HttpGet("https://raw.githubusercontent.com/Yatsuraa/Matsune/main/Matsunebeta.lua"))()
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/egor2078f/lurkhackv4/refs/heads/main/main.lua", true))()
     end    
 })
 	
-Tabs.Main2:AddButton({
-    Title=" New Hub",
+Tabs.Main3:AddButton({
+    Title=" Chill Hub",
     Description="",
     Callback=function() 
-	  loadstring(game:HttpGet("https://raw.githubusercontent.com/GalaxyTeamHub/Galaxy-Hub/main/GalaxyBloxFruit.lua"))()
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/tienkhanh1/spicy/main/Chilli.lua"))()
 	end
 })	
 
