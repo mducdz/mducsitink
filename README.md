@@ -40,7 +40,7 @@ local Tabs = {
 }
     Tabs.Main0:AddButton({
     Title = "Discord",
-    Description = "TBoyRoblox Community",
+    Description = "DUCZ GROUP",
     Callback = function()
         setclipboard("https://discord.gg/tboyroblox-community-1253927333920899153")
     end
@@ -48,7 +48,7 @@ local Tabs = {
 
     Tabs.Main0:AddButton({
     Title = "Youtuber",
-    Description = "TBoy Roblox",
+    Description = "DUCZ Roblox",
     Callback = function()
         setclipboard("https://www.youtube.com/@TBoyRoblox08")
     end
@@ -56,7 +56,7 @@ local Tabs = {
 
     Tabs.Main0:AddButton({
     Title = "Youtuber",
-    Description = "TBoy Gamer",
+    Description = "DUCZ ROBLOX",
     Callback = function()
         setclipboard("https://www.youtube.com/@TBoyGamer08")
     end
@@ -101,3 +101,19 @@ Tabs.Main1:AddButton({
         setclipboard("rMChVgMZYJYHMGNtMvYkvDKasUFztRuG")
     end
 })
+
+Tabs.Main2:AddButton({
+    Title="Speed Hub",
+    Description="",
+    Callback=function()
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
+	end
+}) 
+
+Tabs.Main4:AddButton({
+    Title="Speed Hub",
+    Description="",
+    Callback=function()
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
+	end
+}) 
