@@ -37,6 +37,7 @@ local Tabs = {
         Main2=Window:AddTab({ Title="Script Grow A Garden" }),
         Main3=Window:AddTab({ Title="Script Steal A Brainot" }),
         Main4=Window:AddTab({ Title="Script 99 Night" }),
+		Main5=Window:AddTab({ Title="KEY HUB VV" }),
 }
     Tabs.Main0:AddButton({
     Title = "Discord",
@@ -94,7 +95,7 @@ Tabs.Main3:AddButton({
 	end
 })	
 
-Tabs.Main1:AddButton({
+Tabs.Main5:AddButton({
     Title = "key speed hub vv(cs thể bị fix)",
     Description = "",
     Callback = function()
