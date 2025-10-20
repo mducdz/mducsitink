@@ -118,3 +118,29 @@ Tabs.Main4:AddButton({
 	  loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
 	end
 }) 
+
+Tabs.Main3:AddButton({
+    Title="HoHo Hub",
+    Description="",
+    Callback=function()
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI"))() 
+    end
+})
+
+Tabs.Main3:AddButton({
+    Title="Makal Hub",
+    Description="",
+    Callback=function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/DoliScriptz/loader/refs/heads/main/main.lua",true))()
+    end 
+})
+
+Tabs.Main4:AddButton({
+    Title="Bonk Hub",
+    Description="",
+    Callback=function()
+-- DIAMOND FARM
+getgenv().ScriptMode = "Kaitan"
+loadstring(game:HttpGet("https://bonkhub.online/loader.lua",true))()
+-- NORMAL MODE
+loadstring(game:HttpGet("https://bonkhub.online/loader.lua",true))()
