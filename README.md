@@ -96,7 +96,7 @@ Tabs.Main3:AddButton({
 	end
 })	
 
-Tabs.Main5:AddButton({
+Tabs.Main6:AddButton({
     Title = "key speed hub vv(cs thể bị fix)",
     Description = "",
     Callback = function()
