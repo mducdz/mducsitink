@@ -135,12 +135,26 @@ Tabs.Main3:AddButton({
     end 
 })
 
-Tabs.Main4:AddButton({
-    Title="Bonk Hub",
+Tabs.Main2:AddButton({
+    Title="Lumin Hub",
     Description="",
     Callback=function()
--- DIAMOND FARM
-getgenv().ScriptMode = "Kaitan"
-loadstring(game:HttpGet("https://bonkhub.online/loader.lua",true))()
--- NORMAL MODE
-loadstring(game:HttpGet("https://bonkhub.online/loader.lua",true))()
+	  loadstring(game:HttpGet("https://lumin-hub.lol/loader.lua",true))()
+    end
+})
+
+Tabs.Main2:AddButton({
+    Title="Vxeze Hub",
+    Description="",
+    Callback=function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/Dex-Bear/Vxezehub/refs/heads/main/VxezeHubMain"))()
+	end
+})
+
+Tabs.Main4:AddButton({
+    Title="Than Hub",
+    Description="",
+    Callback=function()
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/thantzy/thanhub/refs/heads/main/thanv1"))()
+	end
+})
