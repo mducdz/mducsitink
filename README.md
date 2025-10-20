@@ -37,7 +37,8 @@ local Tabs = {
         Main2=Window:AddTab({ Title="Script Grow A Garden" }),
         Main3=Window:AddTab({ Title="Script Steal A Brainot" }),
         Main4=Window:AddTab({ Title="Script 99 Night" }),
-		Main5=Window:AddTab({ Title="KEY HUB VV" }),
+		Main5=Window:AddTab({ Title="Script Plants Vs Brainot" }),
+		Main6=Window:AddTab({ Title="KEY HUB VV" }),
 }
     Tabs.Main0:AddButton({
     Title = "Discord",
@@ -158,3 +159,11 @@ Tabs.Main4:AddButton({
 	  loadstring(game:HttpGet("https://raw.githubusercontent.com/thantzy/thanhub/refs/heads/main/thanv1"))()
 	end
 })
+
+Tabs.Main5:AddButton({
+    Title="Speed Hub",
+    Description="",
+    Callback=function()
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
+	end
+}) 
