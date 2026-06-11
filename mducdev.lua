@@ -119,9 +119,9 @@ Tabs.Main0:AddButton({ Title="Youtuber", Description="Ducz ROBLOX", Callback=fun
 -- Tab 1: Blox Fruits
 
 Tabs.Main1:AddButton({
-    Title="Tumadam Hub",
+    Title="Andepzai Hub",
     Callback=function()
-        loadstring(game:HttpGet("https://github.com/Tumadam/cwertyur/raw/refs/heads/main/TumadamEng.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/AnDepZaiHub/AnDepZaiHubBeta/refs/heads/main/AnDepZaiHubBeta.lua"))()
     end
 })
 Tabs.Main1:AddButton({
@@ -199,7 +199,12 @@ Tabs.Main1:AddButton({
         loadstring(game:HttpGet("https://raw.githubusercontent.com/TlDinhKhoi/Xeter/refs/heads/main/Main.lua"))()
     end
 })
-
+Tabs.Main1:AddButton({
+    Title="Tumadam Hub",
+    Callback=function()
+        loadstring(game:HttpGet("https://github.com/Tumadam/cwertyur/raw/refs/heads/main/TumadamEng.lua"))()
+    end
+})
 -- Tab 2: Grow A Garden
 Tabs.Main2:AddButton({
     Title="Teddy Hub",
