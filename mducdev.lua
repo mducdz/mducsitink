@@ -179,6 +179,13 @@ Tabs.Main1:AddButton({
     end
 })
 Tabs.Main1:AddButton({
+    Title="Nash Hub",
+    Callback=function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Obofo5000/NashHub/refs/heads/main/BloxFruits.lua"))()
+    end
+})
+
+Tabs.Main1:AddButton({
     Title="HOHO Hub",
     Callback=function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()
@@ -205,6 +212,7 @@ Tabs.Main1:AddButton({
         loadstring(game:HttpGet("https://github.com/Tumadam/cwertyur/raw/refs/heads/main/TumadamEng.lua"))()
     end
 })
+
 -- Tab 2: Grow A Garden
 Tabs.Main2:AddButton({
     Title="Teddy Hub",
