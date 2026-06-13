@@ -179,19 +179,41 @@ Tabs.Main1:AddButton({
     end
 })
 Tabs.Main1:AddButton({
-    Title="Nash Hub",
+    Title="Quantum HUB ",
     Callback=function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Obofo5000/NashHub/refs/heads/main/BloxFruits.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Trustmenotcondom/QTONYX/refs/heads/main/QuantumOnyx.lua"))()
     end
 })
-
+Tabs.Main1:AddButton({
+    Title="Xero Hub",
+    Callback=function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Xero2409/XeroHub/refs/heads/main/main.lua"))()
+    end
+})
+Tabs.Main1:AddButton({
+    Title="Blue X Hub(key)",
+    Callback=function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-BlueX/BlueX-Hub/refs/heads/main/Main.lua"))()
+    end
+})
+Tabs.Main1:AddButton({
+    Title="Night Mystic Hub",
+    Callback=function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-NightMystic/Bloxfruits/refs/heads/main/Script.lua"))()
+    end
+})
 Tabs.Main1:AddButton({
     Title="HOHO Hub",
     Callback=function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()
     end
 })
-
+Tabs.Main1:AddButton({
+    Title="Tubor Lite Hub",
+    Callback=function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/TurboLite/Script/refs/heads/main/MainV2.lua"))()
+    end
+})
 Tabs.Main1:AddButton({
     Title="Tày hub premium",
     Callback=function()
