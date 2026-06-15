@@ -110,7 +110,7 @@ local Tabs = {
 	Main0=Window:AddTab({Title="Thông Tin"}),
 	Main1=Window:AddTab({Title="Script Main"}),
 	Main2=Window:AddTab({Title="Script Hop Sever"}),
-	Main3=Window:AddTab({Title="Script PVP"})
+	Main3=Window:AddTab({Title="Script Grow A Garden 2"})
 }
 
 -- Tab 0: Thông Tin
@@ -245,8 +245,45 @@ Tabs.Main2:AddButton({
 
 
 -- Tab 3: 99 Nights In The Forest
-
-
+Tabs.Main3:AddButton({
+    Title="Lumin Hub",
+    Callback=function()
+        loadstring(game:HttpGet("https://rawscripts.net/raw/Grow-a-Garden-2-Lumin-Hub-235857"))()
+    end
+})
+Tabs.Main3:AddButton({
+    Title="UB Hub",
+    Callback=function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/TeamUBHub/UBLoader/refs/heads/main/index/Key.lua"))())
+    end
+})
+Tabs.Main3:AddButton({
+    Title="Hoshi Hub",
+    Callback=function()
+        script_key = "Free_key"
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Fluxyyy333/HoshiOnTop/main/loader.lua"))()
+    end
+})
+Tabs.Main3:AddButton({
+    Title="Airflow Hub",
+    Callback=function()
+        loadstring(game:HttpGet("https://airflowscript.com/loader"))()
+    end
+})
+Tabs.Main3:AddButton({
+    Title="Walkyhub Hub",
+    Callback=function()
+        loadstring(game:HttpGet("https://pastefy.app/sKWZ4X9u/raw"))()
+    end
+})
+Tabs.Main3:AddButton({
+    Title="Blue X Hub",
+    Callback=function()
+       _G.AutoTranslate = false 
+       _G.SaveConfig = true 
+       loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-BlueX/BlueX-Hub/refs/heads/main/Main.lua"))()
+    end
+})
 ------------------------------------------------------------
 -- THÊM TOGGLE UI BẰNG BUTTON VÀ PHÍM END (KHÔNG XÓA TAB Blox Fruits)
 local UIS = game:GetService("UserInputService")
