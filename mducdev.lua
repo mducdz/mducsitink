@@ -254,7 +254,7 @@ Tabs.Main3:AddButton({
 Tabs.Main3:AddButton({
     Title="UB Hub",
     Callback=function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/TeamUBHub/UBLoader/refs/heads/main/index/Key.lua"))())
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/TeamUBHub/UBLoader/refs/heads/main/index/Key.lua"))()
     end
 })
 Tabs.Main3:AddButton({
