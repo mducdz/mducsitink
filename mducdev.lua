@@ -94,8 +94,8 @@ repeat task.wait() until game:IsLoaded()
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local Window = Fluent:CreateWindow({
 	Title="DUCZ HUB",
-	SubTitle="by realducz",
-	TabWidth=157,
+	SubTitle="by dev-realducz",
+	TabWidth=190,
 	Size=UDim2.fromOffset(450,300),
 	Acrylic=true,
 	Theme="Dark",
@@ -234,7 +234,37 @@ Tabs.Main1:AddButton({
         loadstring(game:HttpGet("https://github.com/Tumadam/cwertyur/raw/refs/heads/main/TumadamEng.lua"))()
     end
 })
-
+Tabs.Main1:AddButton({
+    Title="Nana Hub",
+    Callback=function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/tamdznanatv/main/refs/heads/main/main2in1.luau'))()
+    end
+})
+Tabs.Main1:AddButton({
+    Title="Zen Hub",
+    Callback=function()
+       loadstring(game:HttpGet('https://raw.githubusercontent.com/Itz-Npg/Roblox-Script/main/zenhubbf.lua', true))()
+    end
+})
+Tabs.Main1:AddButton({
+    Title="DUCZ MAIN Hub",
+    Callback=function()
+       getgenv().name = 'DUCZ MAIN HUB' 
+       loadstring(game:HttpGet('https://vss.pandadevelopment.net/virtual/file/ee47edc4579c497d'))()
+    end
+})
+Tabs.Main1:AddButton({
+    Title="Bacon Hub",
+    Callback=function()
+       loadstring(game:HttpGet('https://raw.githubusercontent.com/vinh129150/hack/refs/heads/main/Bloxfruits.lua'))()
+    end
+})
+Tabs.Main1:AddButton({
+    Title="Annie Hub",
+    Callback=function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Anniecreate86/BloxFruits/refs/heads/main/BetaHub-BF'))()
+    end
+})
 -- Tab 2: Grow A Garden
 Tabs.Main2:AddButton({
     Title="Teddy Hub",
