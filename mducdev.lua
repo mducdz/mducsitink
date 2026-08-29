@@ -2305,9 +2305,9 @@ QuestNeta = function()
 			[6] = PosQ,
 		};
 	end;
-	local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/TurboLite/Script/refs/heads/main/xRedzLib.lua"))():MakeWindow({
-    Title = "Turbo Lite Hub",
-    SubTitle = "UI V2 | Blox Fruit",
+	local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/refs/heads/main/newUI.lua"))():MakeWindow({
+    Title = "HD Hub",
+    SubTitle = "by TEAMNEVO",
     SaveFolder = "turbolite.json"
 })
 -- Criar ScreenGui
