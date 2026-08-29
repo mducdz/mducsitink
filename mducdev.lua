@@ -1,43 +1,36 @@
-loadstring(game:HttpGet("https://turbolite.xyz/script/webhookv2.lua"))()
+-- [Dòng 1 - 25] Khởi tạo Fluent UI
+local Fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/main/main.lua"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/main/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/main/Addons/InterfaceManager.lua"))()
 
--- Cache all services at start for better performance
-local Services = setmetatable({}, {
-    __index = function(self, serviceName)
-        local service = game:GetService(serviceName)
-        rawset(self, serviceName, service)
-        return service
-    end
+local Window = Fluent:CreateWindow({
+    Title = "Mduc Dev Hub",
+    SubTitle = "by mducdz",
+    TabWidth = 160,
+    Size = UDim2.fromOffset(580, 460),
+    Acrylic = false,
+    Theme = "Dark",
+    MinimizeKey = Enum.KeyCode.LeftControl
 })
 
--- ========================================
--- SAVE SYSTEM (Optimized)
--- ========================================
-local HttpService = Services.HttpService
-local FolderName = "Turbo Lite Hub"
-local FileName = "Settings.json"
-local FullPath = FolderName .. "/" .. FileName
-
-if makefolder and not isfolder(FolderName) then 
-    makefolder(FolderName) 
-end
-
-_G.SaveData = _G.SaveData or {}
+local Tabs = {
+    Main = Window:AddTab({ Title = "Main Farm", Icon = "rbxassetid://6031280882" }),
+    Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
+}
 
 function SaveSettings()
     if not writefile then return false end
     local success = pcall(function()
         local json = HttpService:JSONEncode(_G.SaveData)
         writefile(FullPath, json)
-    end)
-    return success
-end
-
-function LoadSettings()
-    if not (isfile and isfile(FullPath)) then return false end
-    local success, result = pcall(function()
-        local content = readfile(FullPath)
-        return HttpService:JSONDecode(content)
-    end)
+-- [Dòng 26 - 35] Nút Toggle
+Tabs.Main:AddToggle("AutoFarmToggle", {
+    Title = "Auto Farm Level",
+    Default = false,
+    Callback = function(Value)
+        _G.Level = Value
+    end
+})
     if success and result then 
         _G.SaveData = result
         return true
@@ -12295,3 +12288,20 @@ if t then Funcs:Attack() end
 end)
 end
 end)
+-- [Dòng cuối cùng] Tạo nút Toggle UI cho Mobile
+local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
+local ToggleBtn = Instance.new("TextButton", ScreenGui)
+
+ToggleBtn.Size = UDim2.new(0, 80, 0, 35)
+ToggleBtn.Position = UDim2.new(0, 10, 0.3, 0)
+ToggleBtn.Text = "Toggle UI"
+ToggleBtn.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+ToggleBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+ToggleBtn.Active = true
+ToggleBtn.Draggable = true
+
+ToggleBtn.MouseButton1Click:Connect(function()
+    Fluent:Toggle()
+end)
+
+Window:SelectTab(1)
