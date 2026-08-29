@@ -2305,110 +2305,44 @@ QuestNeta = function()
 			[6] = PosQ,
 		};
 	end;
-	local Fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/main/main.lua"))()
+	-- Tải thư viện Fluent UI (Đã sửa link raw chuẩn)
+local Fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/main/main.lua"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/main/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/main/Addons/InterfaceManager.lua"))()
 
+-- Tạo Window giao diện
 local Window = Fluent:CreateWindow({
-    Title = "HD HUB",
-    SubTitle = "Blox Fruits",
+    Title = "Mduc Dev Hub",
+    SubTitle = "by mducdz",
     TabWidth = 160,
     Size = UDim2.fromOffset(580, 460),
-    Acrylic = false,
+    Acrylic = true,
     Theme = "Dark",
     MinimizeKey = Enum.KeyCode.LeftControl
 })
 
---==================================================
--- ADAPTER: UI CŨ -> FLUENT
---==================================================
+-- Tạo Tabs
+local Tabs = {
+    Main = Window:AddTab({ Title = "Main Farm", Icon = "rbxassetid://6031280882" }),
+    Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
+}
 
-local Library = {}
-
-function Library:MakeTab(data)
-    local tab = Window:AddTab({
-        Title = data.Title or "Tab",
-        Icon = data.Icon
-    })
-
-    local OldTab = {}
-
-    function OldTab:AddSection(data)
-        local title
-
-        if type(data) == "table" then
-            title = data.Title or data.Name or data[1]
-        else
-            title = data
-        end
-
-        return tab:AddSection(title or "Section")
+-- Thêm Toggle/Button mẫu
+Tabs.Main:AddToggle("AutoFarm", {
+    Title = "Auto Farm Level",
+    Default = false,
+    Callback = function(Value)
+        _G.Level = Value
     end
+})
 
-    function OldTab:AddButton(data)
-        return tab:AddButton({
-            Title = data.Name or data.Title or "Button",
-            Description = data.Description or "",
-            Callback = data.Callback or function()
-            end
-        })
-    end
+-- Khởi tạo SaveManager & Interface
+SaveManager:SetLibrary(Fluent)
+InterfaceManager:SetLibrary(Fluent)
+InterfaceManager:BuildInterfaceSection(Tabs.Settings)
+SaveManager:BuildConfigSection(Tabs.Settings)
 
-    function OldTab:AddToggle(data)
-        return tab:AddToggle(
-            data.Name or data.Title or "Toggle",
-            {
-                Title = data.Name or data.Title or "Toggle",
-                Description = data.Description or "",
-                Default = data.Default or false,
-                Callback = data.Callback or function()
-                end
-            }
-        )
-    end
-
-    function OldTab:AddDropdown(data)
-        return tab:AddDropdown(
-            data.Name or data.Title or "Dropdown",
-            {
-                Title = data.Name or data.Title or "Dropdown",
-                Description = data.Description or "",
-                Values = data.Options or data.Values or {},
-                Multi = data.Multi or false,
-                Default = data.Default,
-                Callback = data.Callback or function()
-                end
-            }
-        )
-    end
-
-    function OldTab:AddTextBox(data)
-        return tab:AddInput(
-            data.Name or data.Title or "Input",
-            {
-                Title = data.Name or data.Title or "Input",
-                Description = data.Description or "",
-                Default = data.Default or "",
-                Placeholder = data.Placeholder or "",
-                Callback = data.Callback or function()
-                end
-            }
-        )
-    end
-
-    function OldTab:AddParagraph(data)
-        return tab:AddParagraph({
-            Title = data.Title or "HD HUB",
-            Content = data.Desc or data.Content or ""
-        })
-    end
-
-    return OldTab
-end
-
-function Library:Minimize()
-    pcall(function()
-        Window:Minimize()
-    end)
-end
+Window:SelectTab(1)
 -- Criar ScreenGui
 local screenGui = Instance.new("ScreenGui")
 screenGui.Name = "ControlGUI"
