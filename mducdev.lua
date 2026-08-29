@@ -2305,11 +2305,110 @@ QuestNeta = function()
 			[6] = PosQ,
 		};
 	end;
-	local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/refs/heads/main/newUI.lua"))():MakeWindow({
-    Title = "HD Hub",
-    SubTitle = "by TEAMNEVO",
-    SaveFolder = "turbolite.json"
+	local Fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/main/main.lua"))()
+
+local Window = Fluent:CreateWindow({
+    Title = "HD HUB",
+    SubTitle = "Blox Fruits",
+    TabWidth = 160,
+    Size = UDim2.fromOffset(580, 460),
+    Acrylic = false,
+    Theme = "Dark",
+    MinimizeKey = Enum.KeyCode.LeftControl
 })
+
+--==================================================
+-- ADAPTER: UI CŨ -> FLUENT
+--==================================================
+
+local Library = {}
+
+function Library:MakeTab(data)
+    local tab = Window:AddTab({
+        Title = data.Title or "Tab",
+        Icon = data.Icon
+    })
+
+    local OldTab = {}
+
+    function OldTab:AddSection(data)
+        local title
+
+        if type(data) == "table" then
+            title = data.Title or data.Name or data[1]
+        else
+            title = data
+        end
+
+        return tab:AddSection(title or "Section")
+    end
+
+    function OldTab:AddButton(data)
+        return tab:AddButton({
+            Title = data.Name or data.Title or "Button",
+            Description = data.Description or "",
+            Callback = data.Callback or function()
+            end
+        })
+    end
+
+    function OldTab:AddToggle(data)
+        return tab:AddToggle(
+            data.Name or data.Title or "Toggle",
+            {
+                Title = data.Name or data.Title or "Toggle",
+                Description = data.Description or "",
+                Default = data.Default or false,
+                Callback = data.Callback or function()
+                end
+            }
+        )
+    end
+
+    function OldTab:AddDropdown(data)
+        return tab:AddDropdown(
+            data.Name or data.Title or "Dropdown",
+            {
+                Title = data.Name or data.Title or "Dropdown",
+                Description = data.Description or "",
+                Values = data.Options or data.Values or {},
+                Multi = data.Multi or false,
+                Default = data.Default,
+                Callback = data.Callback or function()
+                end
+            }
+        )
+    end
+
+    function OldTab:AddTextBox(data)
+        return tab:AddInput(
+            data.Name or data.Title or "Input",
+            {
+                Title = data.Name or data.Title or "Input",
+                Description = data.Description or "",
+                Default = data.Default or "",
+                Placeholder = data.Placeholder or "",
+                Callback = data.Callback or function()
+                end
+            }
+        )
+    end
+
+    function OldTab:AddParagraph(data)
+        return tab:AddParagraph({
+            Title = data.Title or "HD HUB",
+            Content = data.Desc or data.Content or ""
+        })
+    end
+
+    return OldTab
+end
+
+function Library:Minimize()
+    pcall(function()
+        Window:Minimize()
+    end)
+end
 -- Criar ScreenGui
 local screenGui = Instance.new("ScreenGui")
 screenGui.Name = "ControlGUI"
