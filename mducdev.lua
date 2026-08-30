@@ -13,7 +13,7 @@ local Services = setmetatable({}, {
 -- SAVE SYSTEM (Optimized)
 -- ========================================
 local HttpService = Services.HttpService
-local FolderName = "HD HUB"
+local FolderName = "NEVO HUB"
 local FileName = "Settings.json"
 local FullPath = FolderName .. "/" .. FileName
 
@@ -2305,91 +2305,115 @@ QuestNeta = function()
 			[6] = PosQ,
 		};
 	end;
-    local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
-    local Window = Fluent:CreateWindow({Title = "HD HUB", SubTitle = "UI V2 | Blox Fruit", TabWidth = 160, Size = UDim2.fromOffset(720, 500), Acrylic = true, Theme = "Dark", MinimizeKey = Enum.KeyCode.RightControl})
-    local _HDID = 0; local function _HDIDNext() _HDID += 1; return "HD_" .. _HDID end; local function _HDWrap(t) local w = {}; function w:AddSection(c) return t:AddSection(type(c) == "table" and c[1] or c) end; function w:AddButton(c) c.Title = c.Title or c.Name; return t:AddButton(c) end; function w:AddToggle(c) c.Title = c.Title or c.Name; local id = _HDIDNext(); return t:AddToggle(id, c) end; function w:AddDropdown(c) c.Title = c.Title or c.Name; c.Values = c.Values or c.Options; local id = _HDIDNext(); return t:AddDropdown(id, c) end; function w:AddTextBox(c) c.Title = c.Title or c.Name; c.Placeholder = c.Placeholder or c.PlaceHolder; local id = _HDIDNext(); return t:AddInput(id, c) end; function w:AddParagraph(c) local p = t:AddParagraph(c); local old = p.SetValue; function p:SetDesc(v) if old then old(self, v) end end; return p end; function w:AddDiscordInvite(c) return t:AddButton({Title = c.Name or "Discord", Description = c.Description or "", Callback = function() if setclipboard and c.Invite then setclipboard(c.Invite) end end}) end; return w end; local Library = {}; function Library:MakeTab(c) return _HDWrap(Window:AddTab({Title = c.Title, Icon = c.Icon})) end; function Library:Minimize(v) if v then Window:Minimize() else Window:Minimize() end end
-    -- Fluent UI compatibility layer: existing feature code below is preserved.
-    -- Window/tabs use the same variable names so no feature lines need to be removed.
--- Criar ScreenGui
-local screenGui = Instance.new("ScreenGui")
-screenGui.Name = "ControlGUI"
-screenGui.Parent = game.CoreGui
+	-- ================================================================
+-- NEVO HUB UI
+-- Fluent UI + compatibility adapter
+-- Giữ nguyên toàn bộ logic/chức năng bên dưới, chỉ thay lớp giao diện.
+-- ================================================================
 
--- Criar ImageButton
-local imageButton = Instance.new("ImageButton")
-imageButton.Size = UDim2.new(0, 35, 0, 35)
-imageButton.Position = UDim2.new(0.15, 0, 0.15, 0)
-imageButton.Image = "rbxassetid://18919385586"
-imageButton.BackgroundTransparency = 1
-imageButton.Parent = screenGui
+local Fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/main.lua"))()
 
--- Adicionar cantos arredondados
-local uiCorner = Instance.new("UICorner")
-uiCorner.CornerRadius = UDim.new(0.5, 0)
-uiCorner.Parent = imageButton
+local Window = Fluent:CreateWindow({
+    Title = "NEVO HUB",
+    SubTitle = "Blox Fruits • Premium UI",
+    TabWidth = 160,
+    Size = UDim2.fromOffset(620, 500),
+    Acrylic = false,
+    Theme = "Dark",
+    MinimizeKey = Enum.KeyCode.LeftControl
+})
 
--- Adicionar borda AMARELA
-local uiStroke = Instance.new("UIStroke", imageButton)
-uiStroke.Thickness = 2
-uiStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-uiStroke.Color = Color3.fromRGB(0, 255, 0) -- Magenta/Rosa forte
+-- Compatibility adapter: giữ nguyên tên biến/tab và các lệnh Add* cũ.
+local Library = {}
 
--- Variáveis para arrastar
-local dragging = false
-local dragInput
-local dragStart
-local startPos
-
--- Função para atualizar posição
-local function update(input)
-    local delta = input.Position - dragStart
-    imageButton.Position = UDim2.new(
-        startPos.X.Scale,
-        startPos.X.Offset + delta.X,
-        startPos.Y.Scale,
-        startPos.Y.Offset + delta.Y
-    )
+function Library:MakeWindow(_)
+    return self
 end
 
--- Detectar início do arrasto
-imageButton.InputBegan:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-        dragging = true
-        dragStart = input.Position
-        startPos = imageButton.Position
-        
-        input.Changed:Connect(function()
-            if input.UserInputState == Enum.UserInputState.End then
-                dragging = false
-            end
-        end)
-    end
-end)
+function Library:MakeTab(config)
+    local tab = Window:AddTab({
+        Title = config.Title or "NEVO",
+        Icon = config.Icon
+    })
 
--- Detectar movimento do mouse
-imageButton.InputChanged:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-        dragInput = input
-    end
-end)
+    local adapter = {}
 
--- Atualizar posição durante arrasto
-game:GetService("UserInputService").InputChanged:Connect(function(input)
-    if dragging and input == dragInput then
-        update(input)
+    function adapter:AddSection(value)
+        local title = value
+        if type(value) == "table" then
+            title = value[1] or "Section"
+        end
+        return tab:AddSection(title or "Section")
     end
-end)
 
--- Abrir/Fechar GUI (Minimize)
-local isOpen = true
-imageButton.MouseButton1Click:Connect(function()
-    isOpen = not isOpen
-    if isOpen then
-        Library:Minimize(false)
-    else
-        Library:Minimize(true)
+    function adapter:AddButton(config)
+        return tab:AddButton({
+            Title = config.Name or config.Title or "Button",
+            Description = config.Description or "",
+            Callback = config.Callback
+        })
     end
-end)
+
+    function adapter:AddToggle(config)
+        return tab:AddToggle({
+            Title = config.Title or config.Name or "Toggle",
+            Description = config.Description or "",
+            Default = config.Default or false,
+            Callback = config.Callback
+        })
+    end
+
+    function adapter:AddDropdown(config)
+        return tab:AddDropdown({
+            Title = config.Title or config.Name or "Dropdown",
+            Description = config.Description or "",
+            Values = config.Options or config.Values or {},
+            Multi = config.Multi or false,
+            Default = config.Default,
+            Callback = config.Callback
+        })
+    end
+
+    function adapter:AddTextBox(config)
+        return tab:AddInput({
+            Title = config.Title or config.Name or "Input",
+            Description = config.Description or "",
+            Placeholder = config.PlaceHolder or config.Placeholder or "",
+            Default = config.Default or "",
+            Callback = config.Callback
+        })
+    end
+
+    function adapter:AddParagraph(config)
+        if type(config) == "string" then
+            return tab:AddParagraph({Title = config, Content = ""})
+        end
+        return tab:AddParagraph({
+            Title = config.Title or config.Name or "",
+            Content = config.Content or config.Description or ""
+        })
+    end
+
+    function adapter:AddDiscordInvite(config)
+        return tab:AddParagraph({
+            Title = config.Name or "Discord",
+            Content = (config.Description or "") .. "\n" .. (config.Invite or "")
+        })
+    end
+
+    return adapter
+end
+
+-- Dùng proxy để các lệnh Library:Minimize(...) cũ vẫn hoạt động.
+function Library:Minimize(state)
+    pcall(function()
+        if Window.Minimize then
+            Window:Minimize(state)
+        elseif Window.SetMinimized then
+            Window:SetMinimized(state)
+        end
+    end)
+end
 
 local Status = Library:MakeTab({
     Title = "Info & Server",
@@ -2460,8 +2484,9 @@ local Setting = Library:MakeTab({
     Title = "Setting & UI",
     Icon = "rbxassetid://7734053495"
 })
+
 Status:AddDiscordInvite({
-    Name = "Server Discord HD HUB",
+    Name = "Server Discord Turbo Lite Hub",
     Description = "join for support and update <3",
     Logo = "rbxassetid://18919385586",
     Invite = "https://turbolite.xyz/discord"
@@ -4249,7 +4274,7 @@ Setting:AddButton({
             
             -- Notificação Universal (Funciona sem a lib Fluent)
             game.StarterGui:SetCore("SendNotification", {
-                Title = "HD HUB",
+                Title = "NEVO HUB",
                 Text = "Done",
                 Duration = 5
             })
@@ -4270,13 +4295,13 @@ Setting:AddButton({
             
             -- Notificação Universal
             game.StarterGui:SetCore("SendNotification", {
-                Title = "HD HUB",
+                Title = "NEVO HUB",
                 Text = "Done",
                 Duration = 5
             })
         else
             game.StarterGui:SetCore("SendNotification", {
-                Title = "HD HUB",
+                Title = "NEVO HUB",
                 Text = "Done",
                 Duration = 3
             })
