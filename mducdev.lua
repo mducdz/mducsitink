@@ -38,7 +38,7 @@ local function NotificacaoNEVOHub(titulo, mensagem)
         Main.Name = "NEVONoti"
         Main.Parent = Holder
         Main.Size = UDim2.new(1, 0, 0, 80)
-        Main.BackgroundColor3 = Color3.fromRGB(0, 55, 120)
+        Main.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
         Main.BackgroundTransparency = 0.15
         Main.BorderSizePixel = 0
         Main.GroupTransparency = 1
@@ -46,7 +46,7 @@ local function NotificacaoNEVOHub(titulo, mensagem)
 
         local UIStroke = Instance.new("UIStroke")
         UIStroke.Parent = Main
-        UIStroke.Color = Color3.fromRGB(0, 170, 255)
+        UIStroke.Color = Color3.fromRGB(65, 150, 255)
         UIStroke.Thickness = 1
         UIStroke.Transparency = 0.35
         UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
@@ -59,7 +59,7 @@ local function NotificacaoNEVOHub(titulo, mensagem)
         IconBg.Parent = Main
         IconBg.Size = UDim2.new(0, 55, 0, 55)
         IconBg.Position = UDim2.new(0, 12, 0.5, -27)
-        IconBg.BackgroundColor3 = Color3.fromRGB(0, 90, 170)
+        IconBg.BackgroundColor3 = Color3.fromRGB(22, 22, 22)
         Instance.new("UICorner", IconBg).CornerRadius = UDim.new(0, 10)
 
         local Logo = Instance.new("ImageLabel")
@@ -1469,28 +1469,11 @@ QuestNeta = function()
 end
 
 local redzlib = loadstring(game:HttpGet("https://pastefy.app/AVEeQ2xz/raw"))()
-
--- NEVO HUB: Blue 100% theme (UI only)
-pcall(function()
-    if redzlib.Themes and redzlib.Themes.Dark then
-        redzlib.Themes.Dark["Color Hub 1"] = ColorSequence.new(
-            Color3.fromRGB(0, 55, 120),
-            Color3.fromRGB(0, 140, 255)
-        )
-        redzlib.Themes.Dark["Color Hub 2"] = Color3.fromRGB(0, 65, 140)
-        redzlib.Themes.Dark["Color Stroke"] = Color3.fromRGB(0, 170, 255)
-        redzlib.Themes.Dark["Color Theme"] = Color3.fromRGB(0, 150, 255)
-        redzlib.Themes.Dark["Color Text"] = Color3.fromRGB(255, 255, 255)
-        redzlib.Themes.Dark["Color Dark Text"] = Color3.fromRGB(190, 225, 255)
-    end
-end)
-
 local Window = redzlib:MakeWindow({
-  Title = "<font color='rgb(0,150,255)'>NEVO HUB</font>",
-  SubTitle = "<font color='rgb(100,200,255)'>- Blox Fruit</font>",
+  Title = "<font color='rgb(255,0,0)'>NEVO Hub </font>",
+  SubTitle = "<font color='rgb(120,190,255)'>- Blox Fruit</font>",
   SaveFolder = "NEVO_HUB_Config"
 })
-redzlib:SetTheme("Dark")
 
 Window:AddMinimizeButton({
     Button = { Image = "rbxassetid://106607578414348", BackgroundTransparency = 0 },
