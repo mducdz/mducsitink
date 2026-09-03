@@ -452,7 +452,7 @@ task.spawn(function()
 		pcall(function() oth.unhook(http_request) end)
 	end
 	if HOOK_DETECTED then
-		return warn('[ Lotus Hub ] http_request hook detected ! Disabled all http requests')
+		return warn('[ NEVO Hub ] http_request hook detected ! Disabled all http requests')
 	end
 	local req = http_request
 	-- start API
@@ -696,7 +696,7 @@ else
 		end
 	end)
 	local screenGui = Instance.new("ScreenGui")
-	screenGui.Name = "LotusHubGUI"
+	screenGui.Name = "NEVOHubGUI"
 	screenGui.ResetOnSpawn = false
 	screenGui.IgnoreGuiInset = true
 	screenGui.Parent = gethui and gethui() or cloneref(game:GetService("CoreGui"))
@@ -766,7 +766,7 @@ else
 		ImageTransparency = 0,
 	}):Play()
 	local titleText = makeLabel(frame, UDim2.new(0.5, 0, 0.48, 0), UDim2.new(0.48, 0, 0.08, 0))
-	titleText.Text = "Lotus Hub"
+	titleText.Text = "NEVO Hub"
 	titleText.AnchorPoint = Vector2.new(0.5, 0.5)
 	TweenService:Create(titleText, TweenInfo.new(0.6, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
 		TextTransparency = 0,
@@ -2166,7 +2166,7 @@ local zQuestProRemote = game.ReplicatedStorage.Remotes:FindFirstChild("RefreshZQ
 if PLACE_ID.sea2() and zQuestProRemote then
 	local zQuestProConnection = zQuestProRemote.OnClientEvent:Connect(function(a)
 		if a == "promptDialogue" then
-			warn("Lotus Hub : Finished cutscene")
+			warn("NEVO Hub : Finished cutscene")
 			hopLowServer()
 		end
 	end)
