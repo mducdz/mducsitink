@@ -151,18 +151,26 @@ local function NotificacaoNEVOHub(titulo, mensagem)
     end
 end
 
+local EzFastAttack = nil
 task.spawn(function()
     pcall(function()
-        local success, result = pcall(function()
-            return loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-AnhTuansitink/Module/refs/heads/main/EzFastAttack.lua"))()
-        end)
-        if success then
+        EzFastAttack = loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-AnhTuansitink/Module/refs/heads/main/EzFastAttack.lua"))()
+        if EzFastAttack then
             print("[EZFA] ✅ Đã load EzFastAttack thành công!")
-        else
-            warn("[EZFA] ❌ Load thất bại: " .. tostring(result))
+            -- Gán Attack table
+            if type(EzFastAttack) == "table" and EzFastAttack.Attack then
+                Attack = EzFastAttack.Attack
+            elseif type(EzFastAttack) == "table" then
+                Attack = EzFastAttack
+            end
         end
     end)
 end)
+local waitTime = 0
+while (not Attack or not Attack.Kill) and waitTime < 5 do
+    task.wait(0.1)
+    waitTime = waitTime + 0.1
+end
 
 if not Attack then
     Attack = {}
