@@ -6,105 +6,13 @@ local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local TweenService = game:GetService("TweenService")
 
--- ============================================================
--- Fluent Maru loading screen
--- ============================================================
-local CuongTween = TweenService
-local Cuong_CircleSize = UDim2.new(0, 70, 0, 70)
-local Cuong_PulseSize = UDim2.new(0, 90, 0, 90)
-local Cuong_PulseDuration = 0.9
-local Cuong_FadeDuration = 0.5
-
-local HNC = Instance.new("ScreenGui")
-HNC.Name = "@hnc_roblox"
-HNC.IgnoreGuiInset = true
-HNC.ZIndexBehavior = Enum.ZIndexBehavior.Global
-HNC.DisplayOrder = 999999
-HNC.ResetOnSpawn = false
-HNC.Parent = LocalPlayer:WaitForChild("PlayerGui")
-
-local CuongBG = Instance.new("Frame")
-CuongBG.Size = UDim2.new(1, 0, 1, 0)
-CuongBG.Position = UDim2.new(0, 0, 0, 0)
-CuongBG.BackgroundColor3 = Color3.new(0, 0, 0)
-CuongBG.BackgroundTransparency = 0.4
-CuongBG.ZIndex = 10
-CuongBG.Parent = HNC
-
-local HNC_Container = Instance.new("Frame")
-HNC_Container.Size = UDim2.new(0, 200, 0, 160)
-HNC_Container.AnchorPoint = Vector2.new(0.5, 0.5)
-HNC_Container.Position = UDim2.new(0.5, 0, 0.5, 0)
-HNC_Container.BackgroundTransparency = 1
-HNC_Container.ZIndex = 20
-HNC_Container.Parent = HNC
-
-local CuongCircle = Instance.new("Frame")
-CuongCircle.Size = Cuong_CircleSize
-CuongCircle.AnchorPoint = Vector2.new(0.5, 0.5)
-CuongCircle.Position = UDim2.new(0.5, 0, 0.35, 0)
-CuongCircle.BackgroundTransparency = 1
-CuongCircle.ZIndex = 21
-CuongCircle.Parent = HNC_Container
-
-local CuongStroke = Instance.new("UIStroke")
-CuongStroke.Parent = CuongCircle
-CuongStroke.Thickness = 8
-CuongStroke.Color = Color3.fromRGB(255, 255, 255)
-
-local HNC_Corner = Instance.new("UICorner")
-HNC_Corner.CornerRadius = UDim.new(1, 0)
-HNC_Corner.Parent = CuongCircle
-
-local HNC_Text = Instance.new("TextLabel")
-HNC_Text.Size = UDim2.new(1, 0, 0, 40)
-HNC_Text.Position = UDim2.new(0, 0, 0.9, 0)
-HNC_Text.BackgroundTransparency = 1
-HNC_Text.Font = Enum.Font.GothamBold
-HNC_Text.Text = "Loading..."
-HNC_Text.TextSize = 28
-HNC_Text.TextColor3 = Color3.fromRGB(255, 255, 255)
-HNC_Text.TextTransparency = 0
-HNC_Text.ZIndex = 21
-HNC_Text.Parent = HNC_Container
-
-local function CuongTweenObject(obj, props, info)
-    local tw = CuongTween:Create(obj, info, props)
-    tw:Play()
-    return tw
+if not game:IsLoaded() then
+    game.Loaded:Wait()
 end
 
-local function ShowLoading(duration)
-    local start = tick()
-    local pulseInfo = TweenInfo.new(
-        Cuong_PulseDuration,
-        Enum.EasingStyle.Sine,
-        Enum.EasingDirection.InOut
-    )
-
-    while tick() - start < duration do
-        local t1 = CuongTweenObject(CuongCircle, {Size = Cuong_PulseSize}, pulseInfo)
-        t1.Completed:Wait()
-        if tick() - start >= duration then break end
-        local t2 = CuongTweenObject(CuongCircle, {Size = Cuong_CircleSize}, pulseInfo)
-        t2.Completed:Wait()
-    end
-
-    local fadeInfo = TweenInfo.new(
-        Cuong_FadeDuration,
-        Enum.EasingStyle.Sine,
-        Enum.EasingDirection.InOut
-    )
-
-    CuongTweenObject(CuongBG, {BackgroundTransparency = 1}, fadeInfo)
-    CuongTweenObject(CuongStroke, {Transparency = 1}, fadeInfo)
-    local f3 = CuongTweenObject(HNC_Text, {TextTransparency = 1}, fadeInfo)
-    f3.Completed:Wait()
-
-    if HNC and HNC.Parent then
-        HNC:Destroy()
-    end
-end
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local TweenService = game:GetService("TweenService")
 
 -- ============================================================
 -- Fluent Maru UI
