@@ -6,13 +6,7 @@ local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local TweenService = game:GetService("TweenService")
 
-if not game:IsLoaded() then
-    game.Loaded:Wait()
-end
-
-local Players = game:GetService("Players")
-local LocalPlayer = Players.LocalPlayer
-local TweenService = game:GetService("TweenService")
+if not game:IsLoaded() then game.Loaded:Wait() end
 
 -- ============================================================
 -- Fluent Maru UI
@@ -9297,7 +9291,6 @@ local function getFruitStock()
     return resultStr
 end
 
-local stockParagraph = Tabs.Raids:AddParagraph("Stock Fruit", "Loading...")
 
 task.spawn(function()
     while task.wait(60) do
