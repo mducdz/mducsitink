@@ -61,7 +61,7 @@ HNC_Text.Size = UDim2.new(1, 0, 0, 40)
 HNC_Text.Position = UDim2.new(0, 0, 0.9, 0)
 HNC_Text.BackgroundTransparency = 1
 HNC_Text.Font = Enum.Font.GothamBold
-HNC_Text.Text = "Loading NEVO..."
+HNC_Text.Text = "Loading..."
 HNC_Text.TextSize = 28
 HNC_Text.TextColor3 = Color3.fromRGB(255, 255, 255)
 HNC_Text.TextTransparency = 0
@@ -169,8 +169,7 @@ end
 
 local function MakeFluentTab(definition)
     local tab = Window:AddTab({
-        Title = definition.Title,
-        Icon = definition.Icon
+        Title = definition.Title
     })
 
     local adapter = {}
@@ -179,33 +178,54 @@ local function MakeFluentTab(definition)
         return tab:AddSection(title)
     end
 
-    function adapter:AddToggle(options)
-        return tab:AddToggle(
-            options.Name or options.Title or tostring(options),
-            NormalizeControlOptions(options)
-        )
+    -- Support both message.txt's one-table calls and Fluent's
+    -- standard (id, options) calls.
+    function adapter:AddToggle(idOrOptions, maybeOptions)
+        if type(idOrOptions) == "table" then
+            local options = NormalizeControlOptions(idOrOptions)
+            local id = options.Name or options.Title or "Toggle"
+            return tab:AddToggle(id, options)
+        end
+        return tab:AddToggle(idOrOptions, NormalizeControlOptions(maybeOptions or {}))
     end
 
     function adapter:AddButton(options)
         return tab:AddButton(NormalizeControlOptions(options))
     end
 
-    function adapter:AddDropdown(options)
-        return tab:AddDropdown(NormalizeControlOptions(options))
+    function adapter:AddDropdown(idOrOptions, maybeOptions)
+        if type(idOrOptions) == "table" then
+            local options = NormalizeControlOptions(idOrOptions)
+            -- message.txt commonly uses Options; Fluent uses Values.
+            if options.Values == nil and options.Options ~= nil then
+                options.Values = options.Options
+            end
+            local id = options.Name or options.Title or "Dropdown"
+            return tab:AddDropdown(id, options)
+        end
+        local options = NormalizeControlOptions(maybeOptions or {})
+        if options.Values == nil and options.Options ~= nil then
+            options.Values = options.Options
+        end
+        return tab:AddDropdown(idOrOptions, options)
     end
 
-    function adapter:AddSlider(options)
-        return tab:AddSlider(
-            options.Name or options.Title or tostring(options),
-            NormalizeControlOptions(options)
-        )
+    function adapter:AddSlider(idOrOptions, maybeOptions)
+        if type(idOrOptions) == "table" then
+            local options = NormalizeControlOptions(idOrOptions)
+            local id = options.Name or options.Title or "Slider"
+            return tab:AddSlider(id, options)
+        end
+        return tab:AddSlider(idOrOptions, NormalizeControlOptions(maybeOptions or {}))
     end
 
-    function adapter:AddTextBox(options)
-        return tab:AddInput(
-            options.Name or options.Title or tostring(options),
-            NormalizeControlOptions(options)
-        )
+    function adapter:AddTextBox(idOrOptions, maybeOptions)
+        if type(idOrOptions) == "table" then
+            local options = NormalizeControlOptions(idOrOptions)
+            local id = options.Name or options.Title or "Input"
+            return tab:AddInput(id, options)
+        end
+        return tab:AddInput(idOrOptions, NormalizeControlOptions(maybeOptions or {}))
     end
 
     function adapter:AddParagraph(title, description)
@@ -230,21 +250,25 @@ local function MakeFluentTab(definition)
 end
 
 local Tabs = {
-    Info = MakeFluentTab({Title = "Tab Status Server", Icon = "rbxassetid://10709752035"}),
-    Main = MakeFluentTab({Title = "Tab Farming", Icon = "rbxassetid://7733960981"}),
-    Settings = MakeFluentTab({Title = "Tab Setting", Icon = "rbxassetid://7734053495"}),
-    Fish = MakeFluentTab({Title = "Tab Fishing", Icon = "rbxassetid://127664059821666"}),
-    Quests = MakeFluentTab({Title = "Tab Quest And Item", Icon = "rbxassetid://13075622619"}),
-    SeaEvent = MakeFluentTab({Title = "Tab Sea Event", Icon = "rbxassetid://10747376931"}),
-    Race = MakeFluentTab({Title = "Tab Mirage And Race", Icon = "rbxassetid://11162889532"}),
-    Prehistoric = MakeFluentTab({Title = "Tab Volcano Event", Icon = "rbxassetid://10723376114"}),
-    Esp = MakeFluentTab({Title = "Tab Stats And Esp", Icon = "rbxassetid://7040410130"}),
-    Raids = MakeFluentTab({Title = "Tab Fruit And Raid", Icon = "rbxassetid://11155986081"}),
-    Combat = MakeFluentTab({Title = "Tab Local Player", Icon = "rbxassetid://13075651575"}),
-    Travel = MakeFluentTab({Title = "Tab Teleport", Icon = "rbxassetid://10734886004"}),
-    Shop = MakeFluentTab({Title = "Tab Shopping", Icon = "rbxassetid://6031265976"}),
-    Misc = MakeFluentTab({Title = "Tab Miscellaneous", Icon = "rbxassetid://10709783577"})
+    Info = MakeFluentTab({Title = "Tab Status Server"}),
+    Main = MakeFluentTab({Title = "Tab Farming"}),
+    Settings = MakeFluentTab({Title = "Tab Setting"}),
+    Fish = MakeFluentTab({Title = "Tab Fishing"}),
+    Quests = MakeFluentTab({Title = "Tab Quest And Item"}),
+    SeaEvent = MakeFluentTab({Title = "Tab Sea Event"}),
+    Race = MakeFluentTab({Title = "Tab Mirage And Race"}),
+    Prehistoric = MakeFluentTab({Title = "Tab Volcano Event"}),
+    Esp = MakeFluentTab({Title = "Tab Stats And Esp"}),
+    Raids = MakeFluentTab({Title = "Tab Fruit And Raid"}),
+    Combat = MakeFluentTab({Title = "Tab Local Player"}),
+    Travel = MakeFluentTab({Title = "Tab Teleport"}),
+    Shop = MakeFluentTab({Title = "Tab Shopping"}),
+    Misc = MakeFluentTab({Title = "Tab Miscellaneous"})
 }
+
+-- ============================================================
+-- Original message.txt feature code
+-- ============================================================
 
 -- Small compatibility aliases used by the original feature code.
 local function AddFluentNotify(title, content, duration)
