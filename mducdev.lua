@@ -12784,7 +12784,7 @@ Tabs.Misc:AddButton({
 Name = "Rain Fruits (Client)", 
 Description = "",
 Callback = function()
-  for i, v in pairs(game:GetObjects("rbxassetid://14759368201")[1]:GetChildren()) do
+  for i, v in pairs(game:GetObjects("rbxassetid://78862008717799")[1]:GetChildren()) do
     v.Parent = game.Workspace.Map
     v:MoveTo(plr.Character.PrimaryPart.Position + Vector3.new(math.random(-50, 50), 100, math.random(-50, 50)))
     if v.Fruit:FindFirstChild("AnimationController") then
