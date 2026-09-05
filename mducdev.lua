@@ -3,7 +3,7 @@ local function NotificacaoNEVOHub(titulo, mensagem)
         local TweenService = (Services and Services.TweenService) or game:GetService("TweenService")
         local CoreGui = (Services and Services.CoreGui) or game:GetService("CoreGui")
         local RunService = (Services and Services.RunService) or game:GetService("RunService")
-        local LogoID = "rbxassetid://89947810111304"
+        local LogoID = "rbxassetid://78862008717799"
         local displayDuration = 5
         local countdownSpeed = 1.2
         local realDuration = displayDuration / countdownSpeed
